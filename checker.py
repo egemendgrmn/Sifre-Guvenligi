@@ -1,20 +1,8 @@
-"""
-Password Strength Analyzer & Report Logger
-
-- Şifreyi analiz eder
-- Şifrenin kendisini ASLA kaydetmez
-- Analiz raporunu GERÇEK masaüstüne txt olarak kaydeder
-"""
-
 import re
 import os
 from datetime import datetime
 import winreg  # Windows registry'den masaüstü yolunu almak için
 
-
-# ==============================
-# GERÇEK MASAÜSTÜ YOLUNU BUL
-# ==============================
 
 def get_desktop_path():
     """Windows'ta gerçek masaüstü yolunu registry'den alır"""
@@ -44,10 +32,7 @@ def check_digit(password):
 def check_special(password):
     return re.search(r"[!@#$%^&*(),.?\":{}|<>]", password) is not None
 
-
-# ==============================
 # ANALİZ
-# ==============================
 
 def analyze_password(password):
     checks = {
@@ -87,9 +72,7 @@ def recommendations(checks):
     return advice
 
 
-# ==============================
 # RAPORU MASAÜSTÜNE KAYDET
-# ==============================
 
 def save_report(strength, checks):
     desktop = get_desktop_path()
@@ -107,9 +90,8 @@ def save_report(strength, checks):
         f.write("\n")
 
 
-# ==============================
 # ANA AKIŞ
-# ==============================
+
 
 if __name__ == "__main__":
     print("=== ŞİFRE GÜÇ ANALİZİ ===")
@@ -135,3 +117,4 @@ if __name__ == "__main__":
     save_report(strength, checks)
 
     print("\n✔ Analiz raporu GERÇEK masaüstüne kaydedildi.")
+
